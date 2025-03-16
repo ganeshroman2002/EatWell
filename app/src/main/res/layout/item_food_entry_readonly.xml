@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/tvMealType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meal Type"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvFoodDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food Description"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvWaterIntake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water Intake: 0 glasses"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

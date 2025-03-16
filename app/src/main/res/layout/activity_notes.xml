@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NotesActivity">
+
+    <!-- Toolbar -->
+    <LinearLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:src="@drawable/baseline_arrow_back_24" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Daily Food &amp; Water Log"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <!-- Date Selector -->
+    <LinearLayout
+        android:id="@+id/dateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_calendar_month_24"
+            android:contentDescription="Date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
+
+        <TextView
+            android:id="@+id/tvCurrentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="March 17, 2025"
+            android:layout_marginStart="4dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnChangeDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+    </LinearLayout>
+
+    <!-- Water Intake Tracker -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/waterCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/dateLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Water Intake"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/baseline_water_drop_24"
+                    android:contentDescription="Water" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Glasses: "
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/tvWaterCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginStart="4dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnDecreaseWater"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="-"
+                    android:textSize="18sp"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btnIncreaseWater"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="+"
+                    android:textSize="18sp"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Goal: 8 glasses"
+                android:gravity="end"
+                android:layout_marginTop="8dp" />
+
+            <ProgressBar
+                android:id="@+id/waterProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:progress="0"
+                android:max="8" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Food Log -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/foodLogCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/waterCard"
+        app:layout_constraintBottom_toTopOf="@id/addFoodLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food Log"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- ScrollView for food entries -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/foodEntriesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Sample food entry (will be added dynamically in code) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        android:background="#F5F5F5"
+                        android:layout_marginBottom="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Oatmeal with berries and nuts" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/baseline_edit_document_24"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Edit" />
+
+                        <ImageButton
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/baseline_delete_24"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Delete" />
+                    </LinearLayout>
+
+                    <!-- Dynamic entries will be added here -->
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Add Food Entry Layout -->
+    <LinearLayout
+        android:id="@+id/addFoodLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Spinner
+            android:id="@+id/mealTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etFoodDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="What did you eat?"
+                android:inputType="textMultiLine"
+                android:minLines="1"
+                android:maxLines="3" />
+
+            <Button
+                android:id="@+id/btnAddFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_button"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnSaveToDatabase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save to Database"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:layout_marginTop="12dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

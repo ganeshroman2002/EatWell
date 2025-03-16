@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#222222"
+    tools:context=".ui.home.HomeFragment">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:contentDescription="Add new entry"
+        android:src="@drawable/baseline_ac_unit_24"
+        app:backgroundTint="#FF4081"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Weight & Fat Loss Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Weight &amp; Fat Loss"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Feel better and eat tastier while losing fat"
+                android:textColor="#AAAAAA"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardWeightLoss1"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Weight loss image"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_eatwell_logo" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardWeightLoss2"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1.5"
+                    app:cardBackgroundColor="#1E7447"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvDietTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:text="Speed Keto"
+                            android:textColor="#FFFFFF"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvDietTitle"
+                            android:layout_marginStart="16dp"
+                            android:text="2 weeks"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.3"
+                            android:contentDescription="Keto foods"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_eatwell_logo" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Health & Longevity Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Health &amp; Longevity"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Maintain weight but increase energy and lifespan"
+                android:textColor="#AAAAAA"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMaintainWeight1"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#009688"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMaintainWeight2"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1.5"
+                    app:cardBackgroundColor="#8BC34A"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvBalancedDietTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:text="Healthy\nBalanced Diet"
+                            android:textColor="#FFFFFF"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tvBalancedDietTitle"
+                            android:layout_marginStart="16dp"
+                            android:text="1 week"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.3"
+                            android:contentDescription="Balanced diet foods"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_eatwell_logo" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Gaining Weight & Muscle Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Gaining Weight &amp; Muscle"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Boost appetite and gain size without overeating"
+                android:textColor="#AAAAAA"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGainWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    app:cardBackgroundColor="#FFC107"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:text="Protein Packed"
+                            android:textColor="#FFFFFF"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.3"
+                            android:contentDescription="Protein rich foods"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_eatwell_logo" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Gaining Weight & Muscle Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Notes &amp; Records"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardnotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    app:cardBackgroundColor="#07C5FF"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:text="Protein Packed"
+                            android:textColor="#FFFFFF"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.3"
+                            android:contentDescription="Protein rich foods"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_eatwell_logo" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

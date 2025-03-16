@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "462556415722",
+    "firebase_url": "https://farmer-s-roots-default-rtdb.firebaseio.com",
+    "project_id": "farmer-s-roots",
+    "storage_bucket": "farmer-s-roots.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462556415722:android:9453f7f6db4b2deac8f993",
+        "android_client_info": {
+          "package_name": "com.example.eatwell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKkmL9SrWrr9nnchzpf1Gbnh-6apWpUY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

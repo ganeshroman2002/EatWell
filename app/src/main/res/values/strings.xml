@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">EatWell</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- Login and Signup -->
+    <string name="login_title">Welcome Back</string>
+    <string name="login">Log In</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="signup">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_account">Already have an account?</string>
+
+    <!-- Error Messages -->
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_invalid_password">Password must be at least 6 characters</string>
+    <string name="error_passwords_dont_match">Passwords don\'t match</string>
+    <string name="error_empty_name">Name cannot be empty</string>
+    <string name="error_authentication">Authentication failed</string>
+    <string name="success_signup">Account created successfully</string>
+    <string name="supabase_url">https://your-project.supabase.co</string>
+    <string name="supabase_key">your-supabase-anon-key</string>
+</resources>
