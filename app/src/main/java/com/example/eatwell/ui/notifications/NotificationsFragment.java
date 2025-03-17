@@ -1,5 +1,6 @@
 package com.example.eatwell.ui.notifications;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.eatwell.LoginActivity; // Ensure you have a login activity
 import com.example.eatwell.databinding.FragmentNotificationsBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -62,6 +64,9 @@ public class NotificationsFragment extends Fragment {
     }
 
     private void loadProfileData() {
+        // Show loading
+        binding.progressBar.setVisibility(View.VISIBLE);
+
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(auth.getUid());
 
         userRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -99,14 +104,19 @@ public class NotificationsFragment extends Fragment {
 
                     setFieldsEditable(false);
                 }
+
+                // Hide loading after fetching all data
+                binding.progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Failed to load profile data", Toast.LENGTH_SHORT).show();
+                binding.progressBar.setVisibility(View.GONE); // Hide loading on error
             }
         });
     }
+
 
     private void setupButtons() {
         binding.btnEditProfile.setOnClickListener(v -> {
@@ -123,6 +133,9 @@ public class NotificationsFragment extends Fragment {
         });
 
         binding.btnSaveProfile.setOnClickListener(v -> saveProfileData());
+
+        // Logout button functionality
+        binding.btnLogout.setOnClickListener(v -> logoutUser());
     }
 
     private void saveProfileData() {
@@ -159,6 +172,14 @@ public class NotificationsFragment extends Fragment {
                     isEditing = false;
                 })
                 .addOnFailureListener(e -> Toast.makeText(getContext(), "Update Failed", Toast.LENGTH_SHORT).show());
+    }
+
+    private void logoutUser() {
+        auth.signOut();
+
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+        startActivity(intent);
     }
 
     private void setFieldsEditable(boolean enabled) {

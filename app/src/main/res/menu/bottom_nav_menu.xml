@@ -12,8 +12,14 @@
         android:title="BMI" />
 
     <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/baseline_edit_document_24"
+        android:title="Notes" />
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/baseline_settings_24"
         android:title="Setting" />
+
 
 </menu>

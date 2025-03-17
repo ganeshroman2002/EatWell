@@ -22,4 +22,11 @@
         android:name="com.example.eatwell.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_notes"
+        android:name="com.example.eatwell.ui.notes.NotesFragment"
+        android:label="Notes"
+        tools:layout="@layout/fregment_notes" />
+
 </navigation>

@@ -42,6 +42,9 @@ public class DashboardFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // Show loading overlay immediately
+        showLoadingOverlay(true);
+
         // Set up UI elements
         setupUI();
 
@@ -60,43 +63,68 @@ public class DashboardFragment extends Fragment {
         });
     }
 
+    private void showLoadingOverlay(boolean show) {
+        // Add null check to prevent crashes
+        if (binding == null) return;
+
+        // Add logging for debugging
+        Log.d(TAG, "Setting loading overlay visibility to: " + (show ? "VISIBLE" : "GONE"));
+
+        if (show) {
+            binding.loadingOverlay.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
+
+            // Force layout update
+            binding.loadingOverlay.bringToFront();
+            binding.loadingOverlay.invalidate();
+        } else {
+            binding.loadingOverlay.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.GONE);
+        }
+    }
+
     private void loadUserData() {
+        // Ensure loading overlay is visible
+        showLoadingOverlay(true);
+
         String userId = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getUid() : null;
 
         if (userId == null) {
             Log.e(TAG, "User not authenticated");
             Toast.makeText(getContext(), "Please log in to view dashboard", Toast.LENGTH_SHORT).show();
+            showLoadingOverlay(false);
             return;
         }
 
         Log.d(TAG, "Loading data for user: " + userId);
 
-        // First, fetch user's name
         mDatabase.child("users").child(userId).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String name = dataSnapshot.getValue(String.class);
                     Log.d(TAG, "User name found: " + name);
-
-                    // Now fetch profile details
-                    loadProfileData(userId);
+                    loadProfileData(userId); // Fetch profile after name is loaded
+                    // Note: Loading overlay stays visible until profile data is loaded
                 } else {
                     Log.e(TAG, "User name not found");
                     Toast.makeText(getContext(), "User data not found", Toast.LENGTH_SHORT).show();
+                    showLoadingOverlay(false);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Database error: " + databaseError.getMessage());
-                Toast.makeText(getContext(), "Failed to load user data: " + databaseError.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to load user data", Toast.LENGTH_SHORT).show();
+                showLoadingOverlay(false);
             }
         });
     }
 
     private void loadProfileData(String userId) {
+        // Loading overlay is still showing from loadUserData()
+
         mDatabase.child("users").child(userId).child("profile").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot profileSnapshot) {
@@ -108,32 +136,28 @@ public class DashboardFragment extends Fragment {
                     String dietType = profileSnapshot.child("dietType").getValue(String.class);
                     String goal = profileSnapshot.child("goal").getValue(String.class);
 
-                    // Convert values to correct types
                     Integer age = (ageStr != null) ? Integer.parseInt(ageStr) : null;
                     Double weight = (weightStr != null) ? Double.parseDouble(weightStr) : null;
                     Double height = (heightStr != null) ? Double.parseDouble(heightStr) : null;
 
-                    // Debugging logs
-                    Log.d(TAG, "Gender: " + gender);
-                    Log.d(TAG, "Age: " + age);
-                    Log.d(TAG, "Weight: " + weight);
-                    Log.d(TAG, "Height: " + height);
-                    Log.d(TAG, "Diet Type: " + dietType);
-                    Log.d(TAG, "Goal: " + goal);
+                    Log.d(TAG, "Profile loaded: Gender=" + gender + ", Age=" + age + ", Weight=" + weight);
 
-                    // Call method to update UI
                     updateProfileUI(gender, age, weight, goal, dietType, height);
+
+                    // Hide loading overlay only when all data is loaded and UI is updated
+                    showLoadingOverlay(false);
                 } else {
-                    Log.e(TAG, "Profile data not found for user");
+                    Log.e(TAG, "Profile data not found");
                     Toast.makeText(getContext(), "Profile data not found", Toast.LENGTH_SHORT).show();
+                    showLoadingOverlay(false);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Database error: " + databaseError.getMessage());
-                Toast.makeText(getContext(), "Failed to load profile data: " + databaseError.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to load profile data", Toast.LENGTH_SHORT).show();
+                showLoadingOverlay(false);
             }
         });
     }
